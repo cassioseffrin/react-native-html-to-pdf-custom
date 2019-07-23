@@ -56,31 +56,32 @@ import {
   Text,
   TouchableHighlight,
   View,
-} from 'react-native';
+} = from 'react-native';
 
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import {RNHTMLtoPDF} from 'react-native-html-to-pdf-custom';
 
-export default class Example extends Component {
+class Example extends Component {
   async createPDF() {
     let options = {
       html: '<h1>PDF TEST</h1>',
       fileName: 'test',
-      directory: 'Documents',
+      directory: 'docs',
+      page: {
+        size: page.size.UsLetter,
+        orientation: page.orientation.Landscape,
+      },      
     };
 
     let file = await RNHTMLtoPDF.convert(options)
-    // console.log(file.filePath);
-    alert(file.filePath);
-  }
+    console.log(file.filePath);
+  },
 
   render() {
-    return(
-      <View>
-        <TouchableHighlight onPress={this.createPDF}>
-          <Text>Create PDF</Text>
-        </TouchableHighlight>
-      </View>
-    )
+    <View>
+      <TouchableHighlight onPress={this.createPDF}>
+        <Text>Create PDF</Text>
+      </TouchableHighlight>
+    </View>
   }
 }
 ```
@@ -91,26 +92,27 @@ export default class Example extends Component {
 |---|---|---|---|
 | `html` | `string` |  | HTML string to be converted
 | `fileName` | `string` | Random  | Custom Filename excluding .pdf extension
-| `base64` | `boolean` | false  | return base64 string of pdf file (not recommended)
-| `directory` | `string` |default cache directory| Directory where the file will be created (`Documents` folder in example above). Please note, on iOS `Documents` is the only custom value that is accepted.
-| `height` | number | 792  | Set document height (points)
-| `width` | number | 612  | Set document width (points)
-
+| `base64` | boolean | false  | return base64 string of pdf file (not recommended)
 
 #### iOS Only
 
 | Param | Type | Default | Note |
 |---|---|---|---|
-| `paddingLeft` | number | 10  | Outer left padding (points)
-| `paddingRight` | number | 10  | Outer right padding (points)
-| `paddingTop` | number | 10  | Outer top padding (points)
-| `paddingBottom` | number | 10  | Outer bottom padding (points)
-| `padding` | number | 10 | Outer padding for any side (points), overrides any padding listed before
-| `bgColor` | string | #F6F5F0 | Background color in Hexadecimal
+| `height` | number | 612  | Set document height points to US Letter, Landscape
+| `width` | number | 792  | Set document width points to US Letter, Landscape
+| `padding` | number | 10  | Outer padding (points)
 
 
-#### Android Only
+##### Android Only
 
 | Param | Type | Default | Note |
 |---|---|---|---|
 | `fonts` | Array | | Allow custom fonts `['/fonts/TimesNewRoman.ttf', '/fonts/Verdana.ttf']`
+
+### Options: page
+
+| Param | Type | Default | Note |
+|---|---|---|---|
+| `orientation` | `string` | Portrait | Landscape, Portrait
+| `size` | `string` | UsLetter  | A0 - A8, UsGovernmentLetter, UsLetter, UsLegal
+ 
