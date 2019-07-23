@@ -1,10 +1,10 @@
-# react-native-html-to-pdf
+# react-native-html-to-pdf-custom
 
 Convert html strings to PDF documents using React Native
 
 ## Installation
 
-1. Run ` npm i react-native-html-to-pdf@git+https://git@github.com/cassioseffrin/react-native-html-to-pdf-custom.git --save`
+1. Run `npm install react-native-html-to-pdf-custom --save`
 
 ### Option 1: Automatic
 
@@ -19,11 +19,13 @@ Convert html strings to PDF documents using React Native
    [(Screenshot)](http://url.brentvatne.ca/17Xfe).
 
 #### Android
+The android module pulls in iText to convert html to pdf. A license is required for commercial use.
+
 - Edit `android/settings.gradle` to included
 
 ```java
-include ':react-native-html-to-pdf'
-project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-html-to-pdf/android')
+include ':react-native-html-to-pdf-custom'
+project(':react-native-html-to-pdf-custom').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-html-to-pdf-custom/android')
 ```
 
 - Edit `android/app/build.gradle` file to include
@@ -31,7 +33,7 @@ project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDi
 ```java
 dependencies {
   ....
-  compile project(':react-native-html-to-pdf')
+  compile project(':react-native-html-to-pdf-custom')
 
 }
 ```
@@ -115,4 +117,11 @@ class Example extends Component {
 |---|---|---|---|
 | `orientation` | `string` | Portrait | Landscape, Portrait
 | `size` | `string` | UsLetter  | A0 - A8, UsGovernmentLetter, UsLetter, UsLegal
- 
+
+## Images
+
+````<img src="https://www.pexels.com/photo/cat-animal-pet-9673/" />````
+
+### Android Assets
+
+````<img src="file:///android_asset/images/clientLogo.png" />````
