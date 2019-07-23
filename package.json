@@ -2,7 +2,7 @@
 	"author": "Christopher Dro <casheghian@gmail.com>, Cassio Seffrin <cassioseffrin@gmail.com>",
 	"homepage": "https://github.com/cassioseffrin/react-native-html-to-pdf-custom",
 	"bugs": {
-		"url": "https://github.com/cassioseffrin/react-native-html-to-pdf-custom.git/issues"
+		"url": "https://github.com/cassioseffrin/react-native-html-to-pdf-custom/issues"
 	},
 	"deprecated": false,
 	"description": "Convert html strings to PDF documents using React Native",
@@ -11,7 +11,7 @@
 	"name": "react-native-html-to-pdf-custom",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/HoaNguyenT2Nt/react-native-html-to-pdf-custom.git"
+		"url": "git+https://github.com/cassioseffrin/react-native-html-to-pdf-custom/issues"
 	},
 	"scripts": {
 		"start": "node_modules/react-native/packager/packager.sh"
