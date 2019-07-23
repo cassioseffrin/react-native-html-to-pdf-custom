@@ -38,7 +38,7 @@ public class PdfOptions {
     // Missing option default values should have been added by JS
     public PdfOptions(final ReadableMap options) {
         _shouldEncode = options.hasKey("base64") ? options.getBoolean("base64") : _shouldEncode;
-        
+
         if (!options.hasKey("page")) {
             throw new IllegalArgumentException("option not found: page");
         }
@@ -78,24 +78,16 @@ public class PdfOptions {
         return _shouldEncode;
     }
 
-    
-
     public String toString() {
-        return String.format("%s Page: %s, %f inch x %f inch ( %f pt x %f pt ) ( %f mm x %f mm )",
-                _pageOrientation,
-                _pageId,
-                _pageWidthMm * MillimetersToInches,
-                _pageHeightMm * MillimetersToInches,
-                _pageWidthMm * MillimetersToPoints,
-                _pageHeightMm * MillimetersToPoints,
-                _pageWidthMm,
-                _pageHeightMm);
+        return String.format("%s Page: %s, %f inch x %f inch ( %f pt x %f pt ) ( %f mm x %f mm )", _pageOrientation,
+                _pageId, _pageWidthMm * MillimetersToInches, _pageHeightMm * MillimetersToInches,
+                _pageWidthMm * MillimetersToPoints, _pageHeightMm * MillimetersToPoints, _pageWidthMm, _pageHeightMm);
     }
 
-    // How to create a PrintAttributes.MediaSize from page data w x h declared in JS?
+    // How to create a PrintAttributes.MediaSize from page data w x h declared in
+    // JS?
     // This switch statement smells like it will be hard to maintain
-    public static PrintAttributes.MediaSize getMediaSize(String pageId,
-                                                   String orientation) {
+    public static PrintAttributes.MediaSize getMediaSize(String pageId, String orientation) {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             throw new RuntimeException("call requires API level 19");
@@ -103,50 +95,55 @@ public class PdfOptions {
 
         PrintAttributes.MediaSize mediaSize = null;
         switch (pageId) {
-            case "A0":
-                mediaSize = PrintAttributes.MediaSize.ISO_A0;
-                break;
-            case "A1":
-                mediaSize = PrintAttributes.MediaSize.ISO_A1;
-                break;
-            case "A2":
-                mediaSize = PrintAttributes.MediaSize.ISO_A2;
-                break;
-            case "A3":
-                mediaSize = PrintAttributes.MediaSize.ISO_A3;
-                break;
-            case "A4":
-                mediaSize = PrintAttributes.MediaSize.ISO_A4;
-                break;
-            case "A5":
-                mediaSize = PrintAttributes.MediaSize.ISO_A5;
-                break;
-            case "A6":
-                mediaSize = PrintAttributes.MediaSize.ISO_A6;
-                break;
-            case "A7":
-                mediaSize = PrintAttributes.MediaSize.ISO_A7;
-                break;
-            case "A8":
-                mediaSize = PrintAttributes.MediaSize.ISO_A8;
-                break;
-            case "UsGovernmentLetter":
-                mediaSize = PrintAttributes.MediaSize.NA_GOVT_LETTER;
-                break;
-            case "UsLetter":
-                mediaSize = PrintAttributes.MediaSize.NA_LETTER;
-                break;
-            case "UsLegal":
-                mediaSize = PrintAttributes.MediaSize.NA_LEGAL;
-                break;
-            default:
-                mediaSize = PrintAttributes.MediaSize.ISO_A4;
-                break;
+        case "A0":
+            mediaSize = PrintAttributes.MediaSize.ISO_A0;
+            break;
+        case "A1":
+            mediaSize = PrintAttributes.MediaSize.ISO_A1;
+            break;
+        case "A2":
+            mediaSize = PrintAttributes.MediaSize.ISO_A2;
+            break;
+        case "A3":
+            mediaSize = PrintAttributes.MediaSize.ISO_A3;
+            break;
+        case "A4":
+            mediaSize = PrintAttributes.MediaSize.ISO_A4;
+            break;
+        case "A5":
+            mediaSize = PrintAttributes.MediaSize.ISO_A5;
+            break;
+        case "A6":
+            mediaSize = PrintAttributes.MediaSize.ISO_A6;
+            break;
+        case "A7":
+            mediaSize = PrintAttributes.MediaSize.ISO_A7;
+            break;
+        case "A8":
+            mediaSize = PrintAttributes.MediaSize.ISO_A8;
+            break;
+        case "UsGovernmentLetter":
+            mediaSize = PrintAttributes.MediaSize.NA_GOVT_LETTER;
+            break;
+        case "UsLetter":
+            mediaSize = PrintAttributes.MediaSize.NA_LETTER;
+            break;
+        case "UsLegal":
+            mediaSize = PrintAttributes.MediaSize.NA_LEGAL;
+            break;
+        default:
+            mediaSize = PrintAttributes.MediaSize.ISO_A4;
+            break;
         }
-        if (orientation.equalsIgnoreCase(OrientationLandscape)) {
-            return mediaSize.asLandscape();
-        }
-        return mediaSize;
+        /* customizacao bobina coil */
+        int hei = (int) _pageHeightMm;
+        int wid = (int) _pageWidthMm;
+
+        PrintAttributes.MediaSize customSize = new PrintAttributes.MediaSize("BOBINA", "BOBINA", wid, hei);
+        customSize.asPortrait();
+
+        return customSize;
+        /* fim customizacao bobina coil */
     }
 
     public PrintAttributes.MediaSize getMediaSize() {
