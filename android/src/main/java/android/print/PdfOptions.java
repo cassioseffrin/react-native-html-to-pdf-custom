@@ -135,12 +135,8 @@ public class PdfOptions {
             mediaSize = PrintAttributes.MediaSize.ISO_A4;
             break;
         }
-        // if (orientation.equalsIgnoreCase(OrientationLandscape)) {
-        // return mediaSize.asLandscape();
-        // }
-        // return mediaSize;
 
-        /* costom coil */
+        /* custom coil */
         int hei = (int) _pageHeightMm;
         int wid = (int) _pageWidthMm;
 
@@ -148,7 +144,7 @@ public class PdfOptions {
         customSize.asPortrait();
 
         return customSize;
-        /* end costom coil */
+        /* end custom coil */
     }
 
     public PrintAttributes.MediaSize getMediaSize() {

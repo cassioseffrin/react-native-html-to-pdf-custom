@@ -4,7 +4,7 @@ Convert html strings to PDF documents using React Native
 
 ## Installation
 
-1. Run `npm install react-native-html-to-pdf --save`
+1. Run ` npm i react-native-html-to-pdf@git+https://git@github.com/cassioseffrin/react-native-html-to-pdf-custom.git --save`
 
 ### Option 1: Automatic
 
