@@ -4,6 +4,6 @@
 #import <React/RCTView.h>
 #import <React/RCTBridgeModule.h>
 
-@interface RnHtmlToPdf : RCTView <RCTBridgeModule, UIWebViewDelegate>
+@interface RNHTMLtoPDF : RCTView <RCTBridgeModule, UIWebViewDelegate>
 
 @end
