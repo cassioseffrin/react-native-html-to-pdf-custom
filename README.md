@@ -51,39 +51,36 @@ new RNHTMLtoPDFPackage()
 ```javascript
 
 import React, { Component } from 'react';
+import { Text, TouchableHighlight, View } from 'react-native';
+import { RNHTMLtoPDF } from 'react-native-html-to-pdf-custom';
 
-import {
-  Text,
-  TouchableHighlight,
-  View,
-} = from 'react-native';
+export default class Example extends Component {
+	async createPDF() {
+		let options = {
+			html: '<h1>PDF TEST</h1>',
+			fileName: 'test',
+			directory: 'docs',
+			page: {
+				size: 'UsLetter',
+				orientation: 'Landscape'
+			}
+		};
+		let file = await RNHTMLtoPDF.convert(options);
+		// console.log(file.filePath);
+		alert(file.filePath);
+	}
 
-import {RNHTMLtoPDF} from 'react-native-html-to-pdf-custom';
-
-class Example extends Component {
-  async createPDF() {
-    let options = {
-      html: '<h1>PDF TEST</h1>',
-      fileName: 'test',
-      directory: 'docs',
-      page: {
-        size: page.size.UsLetter,
-        orientation: page.orientation.Landscape,
-      },      
-    };
-
-    let file = await RNHTMLtoPDF.convert(options)
-    console.log(file.filePath);
-  },
-
-  render() {
-    <View>
-      <TouchableHighlight onPress={this.createPDF}>
-        <Text>Create PDF</Text>
-      </TouchableHighlight>
-    </View>
-  }
+	render() {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center' }}>
+				<TouchableHighlight onPress={this.createPDF}>
+					<Text style={{ textAlign: 'center' }}>Create PDF</Text>
+				</TouchableHighlight>
+			</View>
+		);
+	}
 }
+
 ```
 
 ## Options
