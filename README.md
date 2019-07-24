@@ -8,7 +8,7 @@ Convert html strings to PDF documents using React Native
 
 ### Option 1: Automatic
 
-2. Run `react-native link`
+2. Run `react-native link react-native-html-to-pdf-custom`
 
 ### Option 2: Manual
 
