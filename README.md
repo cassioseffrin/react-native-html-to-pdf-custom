@@ -114,7 +114,7 @@ export default class Example extends Component {
 | Param | Type | Default | Note |
 |---|---|---|---|
 | `fonts` | Array | | Allow custom fonts `['/fonts/TimesNewRoman.ttf', '/fonts/Verdana.ttf']`
-| `page` | Array | | Allow custom page size `page: { size: { mm: { h: totalHeight, w: totalWidth  } },  orientation: 'Portrait' `
+| `page` | JSON | | Allow custom page size `{page: { size: { mm: { h: totalHeight, w: totalWidth  } },  orientation: 'Portrait'}`
 
 
 ### Options: page
