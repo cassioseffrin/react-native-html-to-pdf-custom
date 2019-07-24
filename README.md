@@ -1,29 +1,38 @@
-# react-native-html-to-pdf
+# react-native-html-to-pdf-custom
 
-Convert html strings to PDF documents using React Native
+Compatible with React Native v0.60 and above. 
+
+This is a customization of the official package https://github.com/christopherdro/react-native-html-to-pdf. 
+
+This customization allows to create a pdf in specific size as described below:
+
+let options = {
+    html: var_with_html_content,
+    fileName: 'nameOfFile.pdf',
+    height: totalHeight, // ios
+    width: totalWidth,  //ios
+    page: {
+        size: { mm: { h: totalHeight, w: totalWidth  } }, 
+        orientation: 'Portrait'
+    },
+    base64: true //generate base64
+};
 
 ## Installation
 
 1. Run ` npm i react-native-html-to-pdf@git+https://git@github.com/cassioseffrin/react-native-html-to-pdf-custom.git --save`
 
-### Option 1: Automatic
+### iOS
 
-2. Run `react-native link react-native-html-to-pdf-custom`
+1. Inside the ios directory run: pod install. 
 
-### Option 2: Manual
-
-#### iOS
-
-2. Open your project in XCode, right click on [Libraries](http://url.brentvatne.ca/jQp8) and select [Add Files to "Your Project Name](http://url.brentvatne.ca/1gqUD).
-3. Add `libRNHTMLtoPDF.a` to `Build Phases -> Link Binary With Libraries`
-   [(Screenshot)](http://url.brentvatne.ca/17Xfe).
-
-#### Android
+ 
+#### Android - Manual installation
 - Edit `android/settings.gradle` to included
 
 ```java
-include ':react-native-html-to-pdf'
-project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-html-to-pdf/android')
+include ':react-native-html-to-pdf-custom'
+project(':react-native-html-to-pdf-custom').projectDir = new File(rootProject.projectDir,'../node_modules/react-native-html-to-pdf-custom/android')
 ```
 
 - Edit `android/app/build.gradle` file to include
@@ -31,7 +40,7 @@ project(':react-native-html-to-pdf').projectDir = new File(rootProject.projectDi
 ```java
 dependencies {
   ....
-  compile project(':react-native-html-to-pdf')
+  compile project(':react-native-html-to-pdf-custom')
 
 }
 ```
@@ -105,6 +114,8 @@ export default class Example extends Component {
 | Param | Type | Default | Note |
 |---|---|---|---|
 | `fonts` | Array | | Allow custom fonts `['/fonts/TimesNewRoman.ttf', '/fonts/Verdana.ttf']`
+| `page` | Array | | Allow custom page size `page: { size: { mm: { h: totalHeight, w: totalWidth  } },  orientation: 'Portrait' `
+
 
 ### Options: page
 
