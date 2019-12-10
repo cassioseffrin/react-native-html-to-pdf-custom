@@ -10,7 +10,7 @@
 #import "RNHTMLtoPDF.h"
 
 typedef struct PageStruct{
-    const char * const key;
+    const char *  key;
     int width;//hoant correct direction for ios
     int height;
 } PageStruct;
